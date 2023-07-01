@@ -1,0 +1,20 @@
+version : "3.8"
+services: 
+  api-bank : 
+    image : "api-bank"
+    hostname : "api-bank" 
+    ports : 
+      - "3001:3001"
+    depends_on:  
+      - "mongo"
+    external_links:
+      - "mongo"
+    environment: 
+      - DATABASE_URL=mongodb://mongo:27017/mydb
+  mongo : 
+    image : "mongo"
+    hostname : "mongo"
+    ports :
+      - "27017:27017"
+    volumes : 
+      - "./data/:/data/db" 
