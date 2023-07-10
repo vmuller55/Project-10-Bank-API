@@ -11,6 +11,7 @@ services:
       - "mongo"
     environment: 
       - DATABASE_URL=mongodb://mongo:27017/mydb
+      - SECRET_KEY=agdeihfod££34
   mongo : 
     image : "mongo"
     hostname : "mongo"
