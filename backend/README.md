@@ -1,5 +1,7 @@
 # Project #10 - Argent Bank API
 
+This project was bootsrapped with Docker
+
 This codebase contains the code needed to run the backend for Argent Bank.
 
 ## Getting Started
@@ -37,6 +39,26 @@ npm run dev:server
 
 # Populate database with two users
 npm run populate-db
+```
+
+### Docker 
+
+```bash
+# Build docker
+docker build -t api-bank .
+
+# Run docker
+docker-compose up -d 
+
+# Open container ID terminal or use docker desktop
+docker exec -it {container ID} /bin/bash
+
+# Run database Script on container
+npm run populate-db
+
+#Shutdown docker
+ docker-compose down 
+
 ```
 
 Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!

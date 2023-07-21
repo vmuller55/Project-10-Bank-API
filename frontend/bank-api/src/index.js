@@ -9,6 +9,7 @@ import Home from './pages/home/Home';
 import User from './pages/user/User';
 import store from './store/store';
 import { Provider } from 'react-redux';
+import ErrorPage from './pages/error/Error'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
           <Route index element={<Home/>} />
           <Route path="login" element={<Login />}/>
           <Route path='/profile/:id' element={<User/>} />
+          <Route path='*' element={<ErrorPage/>}/>
       </Routes>
       <Footer />
     </Provider>
