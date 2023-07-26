@@ -13,59 +13,41 @@ Argent Bank uses the following tech stack:
 - [Node.js v12](https://nodejs.org/en/)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
-
-```bash
-# Check Node.js version
-node --version
-
-# Check Mongo version
-mongo --version
-```
-
 ### Instructions
 
-1. Fork this repo
 1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+2. Open a terminal window in the cloned project
+3. Run the following commands:
 
-```bash
-# Install dependencies
-npm install
-
-# Start local dev server
-npm run dev:server
-
-# Populate database with two users
-npm run populate-db
-```
 
 ### Docker 
 
 ```bash
+
+cd backend 
+
 # Build docker
 docker build -t api-bank .
 
 # Run docker
 docker-compose up -d 
 
-# Open container ID terminal or use docker desktop
+# at first launch it's possible to populate the db with fake data 
 docker exec -it {container ID} /bin/bash
 
 # Run database Script on container
-npm run populate-db
+node ./scripts/populateDatabase.js
 
 #Shutdown docker
  docker-compose down 
 
 ```
 
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
+Your server should now be running at http://locahost:3001 and your db on port 27017. if you ran the populate script you will also have two users in your MongoDB database!
 
 ## Populated Database Data
 
-Once you run the `populate-db` script, you should have two users in your database:
+
 
 ### Tony Stark
 

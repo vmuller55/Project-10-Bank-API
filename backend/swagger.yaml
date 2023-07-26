@@ -110,7 +110,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transaction/{transactionAccountId}:
+  /user/transactions/{transactionAccountId}:
     get:
       security:
         - Bearer: []
@@ -143,7 +143,7 @@ paths:
           description: Not Found
         '500' :
           description: Internal server Error
-  /user/transactions/{transactionAccountId}/{transactionId}:
+  /user/transactions/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -210,7 +210,7 @@ paths:
       produces:
         - application/json
       responses:
-        '201' :
+        '200' :
           description: transactions detail modified successfully
           schema:
             $ref: '#/definitions/TransactionMessage'
@@ -220,43 +220,43 @@ paths:
           description: Unauthorized
         '500' :
           description: Internal server Error
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - Account checking transaction
-      summary : User transaction Endpoint
-      description: Endpoint to delete transactions information
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true 
-        - name: transactionAccountId
-          in: path
-          required: true
-          description : Account transaction
-          type: integer
-        - name: transactionId
-          in: path
-          required: true
-          description : Transaction detail
-          type: integer
-      produces:
-        - application/json
-      responses:
-        '201' :
-          description: transactions information deleted successfully
-          schema:
-            $ref: '#/definitions/TransactionMessage'
-        '400':
-          description: Bad Request
-        '401' : 
-          description: Unauthorized
-        '404' : 
-          description: Not Found
-        '500' :
-          description: Internal server Error
+#    delete:
+#      security:
+#        - Bearer: []
+#      tags:
+#        - Account checking transaction
+#      summary : User transaction Endpoint
+#     description: Endpoint to delete transactions information
+#      parameters:
+#        - in: header
+#          name: Authorization
+#          description: Attach Bearer JWT token
+#          required: true 
+#        - name: transactionAccountId
+#          in: path
+#          required: true
+#          description : Account transaction
+#         type: integer
+#        - name: transactionId
+#          in: path
+#         required: true
+#          description : Transaction detail
+#          type: integer
+#      produces:
+#        - application/json
+#      responses:
+#        '201' :
+#          description: transactions information deleted successfully
+#          schema:
+#            $ref: '#/definitions/TransactionMessage'
+#        '400':
+#          description: Bad Request
+#        '401' : 
+#          description: Unauthorized
+#        '404' : 
+#          description: Not Found
+#        '500' :
+#          description: Internal server Error
     post:
       security:
         - Bearer: []
