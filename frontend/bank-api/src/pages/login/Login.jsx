@@ -15,19 +15,40 @@ function Login ()  {
      */
     const token = useSelector((state) => state.token)
     const userProfile = useSelector((state) => state.profile)
+    const rememberMe = useSelector((state) => state.auth.rememberMe);
+    const { email, password } = useSelector((state) => state.auth);
     /**
      * UseStates to alert invalid input and to get input for login
      */
     const [isInvalidEmail, setIsInvalidEmail] = useState(false);
     const [isInvalidPassword, setIsInvalidPassword] = useState(false);
-    const [email, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    
+    const handleRememberMeChange = () => {
+      dispatch(authActions.toggleRememberMe());
+    };
+  
+    const handleEmailChange = (e) => {
+      const newEmail = e.target.value;
+      dispatch(authActions.saveCredentials({ email: newEmail, password }));
+    };
+  
+    const handlePasswordChange = (e) => {
+      const newPassword = e.target.value;
+      dispatch(authActions.saveCredentials({ email, password: newPassword }));
+    };
+  
+  
+
     /**
      * 
      * @param {*} event 
      */
     const handleSubmit = async (event) => {
       event.preventDefault()
+
+      if (!rememberMe) {
+        dispatch(authActions.clearCredentials());
+      }
       /**
        * Get token and put it in a const
        */
@@ -79,16 +100,22 @@ function Login ()  {
                 <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" onChange={(e)=> setUsername(e.target.value)}/>
+                        <input type="text" id="username" value={email} onChange={handleEmailChange}/>
                         {isInvalidEmail && <span className="error">Error: User not found!</span>}
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" onChange={(e)=> setPassword(e.target.value)}/>
+                          <input type="password" id="password" value={password} onChange={handlePasswordChange}/> 
                         {isInvalidPassword && <span className="error">Error: Password is invalid</span>}
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
+                        <input 
+                          type="checkbox" 
+                          id="remember-me" 
+                          checked={rememberMe}
+                          onChange={handleRememberMeChange}
+                        />
+                        <label htmlFor="remember-me">Remember me</label>
                     </div>
                     <button className="sign-in-button">Sign In</button>
                 </form>
